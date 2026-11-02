@@ -2,6 +2,12 @@
 
 متجر افتراضي فاخر للأجهزة المنزلية، بالعربية والإنجليزية. Built with semantic HTML, CSS and vanilla JavaScript; no installation or build required.
 
+المتجر المباشر: [MIRA](https://marwanywr3-lab.github.io/mira-living/)
+
+## GitHub Pages
+
+The `Deploy MIRA to GitHub Pages` workflow publishes **the contents of `dist/`** at the site root. In Settings → Pages, set Source to **GitHub Actions**. Updates to `dist/` on `main` are deployed automatically; the workflow can also be run manually. Publishing the repository root as a Jekyll site displays this README instead of the storefront.
+
 ## Preview
 
 Serve `dist/` with any static web server. For example, from this directory:
