@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="MIRA. Seven considered essentials for a beautifully everyday life. Explore our virtual appliance collection in English and Arabic.">
+  <title>MIRA — Beautifully everyday</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="catalog.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#collection" data-i18n="skip">انتقل للمجموعة</a>
+  <header class="nav-wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#" class="logo" aria-label="MIRA home">MIRA<span>®</span></a>
+      <div class="nav-links"><a href="#collection" data-i18n="collection">المجموعة</a><a href="#philosophy" data-i18n="philosophy">فلسفتنا</a></div>
+      <div class="nav-tools">
+        <button id="language" class="text-button" aria-label="Switch to English">EN</button>
+        <span class="nav-divider"></span>
+        <button id="currency" class="text-button currency">SAR <span>⌄</span></button>
+        <button id="bag" class="bag-button" aria-label="حقيبة التسوق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span id="bag-count">0</span></button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="heroEye">فن الحياة اليومية</p>
+        <h1 id="hero-title"><span class="hero-brand">MIRA.</span><span data-i18n="heroTitle">استثنائية.<br>بكل بساطة.</span></h1>
+        <p class="hero-description" data-i18n="heroDesc">تفاصيل أقل. إحساس أعمق.<br>سبعة أجهزة، ورؤية واحدة لحياة أجمل.</p>
+        <a class="button dark" href="#collection"><span data-i18n="explore">اكتشف المجموعة</span><span class="arrow">↗</span></a>
+        <div class="hero-bottom"><span class="tiny" data-i18n="collectionYear">مجموعة MIRA / 2026</span><a href="#spotlight" class="scroll-cue"><span data-i18n="scroll">مرّر للاكتشاف</span> ↓</a></div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/home.jpg" alt="MIRA HOME in a warm, minimal kitchen" fetchpriority="high" width="768" height="1376">
+        <div class="image-tag"><div><span class="tiny" data-i18n="meetHome">تعرّف على</span><strong>MIRA HOME</strong></div><button class="round-button" data-detail="home" aria-label="Explore MIRA HOME">↗</button></div>
+        <span class="image-index" dir="ltr">01 — 07</span>
+      </div>
+    </section>
+    <section class="intro section-pad reveal">
+      <p class="eyebrow" data-i18n="introEye">حضور هادئ. أثر عميق.</p>
+      <h2 data-i18n="introTitle">مساحة للأشياء<br>التي تعني لك الكثير.</h2>
+      <p data-i18n="introDesc">نؤمن أن أجمل التصاميم هي التي تنسجم مع حياتك. أشكال نقية، وألوان هادئة، وتفاصيل تجعل كل يوم مختلفًا.</p>
+    </section>
+    <section class="spotlight" id="spotlight" aria-labelledby="spot-title">
+      <div class="spot-image"><img src="assets/brew.jpg" alt="MIRA BREW in warm ivory beside a kitchen window" loading="lazy" width="768" height="1376"><div class="spot-image-caption"><span>MIRA BREW</span><span data-i18n="ivory">عاجي دافئ</span></div></div>
+      <div class="spot-story"><div class="spot-sticky reveal"><span class="eyebrow" data-i18n="ritualEye">طقوس صغيرة، لحظات كبيرة</span><h2 id="spot-title" data-i18n="ritualTitle">صباحك.<br>على مهل.</h2><p data-i18n="ritualDesc">ضوء النافذة. فنجانك المفضل. ولحظة تخصّك وحدك. MIRA BREW يكمّل المشهد.</p><div class="spot-price" data-price="brew"></div><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew">اكتشف MIRA BREW</span><span class="arrow">↗</span></button><div class="story-line"><span>01</span><div></div><span data-i18n="everydayRitual">طقوس كل يوم</span></div></div></div>
+    </section>
+    <section class="collection section-pad" id="collection" aria-labelledby="collection-title">
+      <div class="section-head reveal"><div><p class="eyebrow" data-i18n="sevenEssentials">سبعة أساسيات. عالم واحد.</p><h2 id="collection-title" data-i18n="collectionTitle">انسجام في كل ركن.</h2></div><p data-i18n="collectionDesc">اختر ما يشبهك.<br>دع البساطة تتولى الباقي.</p></div>
+      <div class="collection-toolbar"><div id="filters" class="filters" role="group" aria-label="Product categories"></div><span class="product-count" id="product-count" aria-live="polite"></span></div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+    <section class="philosophy" id="philosophy"><div class="philosophy-art"><img src="assets/air.jpg" alt="Minimal ivory MIRA AIR in a sunlit living room" loading="lazy" width="768" height="1376"></div><div class="philosophy-copy reveal"><p class="eyebrow" data-i18n="philosophyEye">فلسفة MIRA</p><h2 data-i18n="philosophyTitle">الجمال في<br>ما نختصره.</h2><p data-i18n="philosophyDesc">نمنح كل خط سببًا، وكل تفصيلة مساحة. مجموعة تنتمي إلى منزلك، وتترك مكانًا لحياتك.</p><a class="underlined" href="#collection"><span data-i18n="findMira">اعثر على MIRA الخاص بك</span><span>↗</span></a></div></section>
+    <section class="closing section-pad reveal"><p class="eyebrow" data-i18n="closingEye">منزلك. بطريقتك.</p><h2 data-i18n="closingTitle">حياة أجمل.<br>تبدأ بتفصيلة.</h2><a class="button dark" href="#collection"><span data-i18n="explore">اكتشف المجموعة</span><span>↗</span></a></section>
+  </main>
+  <footer><div class="footer-top"><a href="#" class="logo">MIRA<span>®</span></a><span data-i18n="footerTag">للحياة، بكل جمالها.</span><a href="#collection" data-i18n="collection">المجموعة</a><a href="#philosophy" data-i18n="philosophy">فلسفتنا</a></div><div class="footer-bottom"><span>© 2026 MIRA</span><p data-i18n="demoFooter">علامة افتراضية وتجربة تسوّق تجريبية. لا تُحصّل أي مبالغ.</p><span data-i18n="designedCare">صُمّم بعناية.</span></div></footer>
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-name"><div id="detail-content"></div></dialog>
+  <dialog id="checkout-dialog" class="checkout-dialog" aria-labelledby="checkout-heading"><div class="drawer-head"><span class="logo">MIRA</span><button class="round-button close-checkout" aria-label="Close checkout">×</button></div><div id="checkout-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
