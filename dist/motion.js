@@ -64,6 +64,6 @@
     films.forEach(section=>{section.classList.remove('cinema-in-room');section.querySelector('.cinema-object').style.willChange='';});
    };
   });
-  document.addEventListener('mira:layout',refresh);document.fonts?.ready.then(refresh);window.addEventListener('pageshow',refresh);refresh();
+  document.addEventListener('mira:layout',refresh);document.addEventListener('mira:catalog',refresh);document.fonts?.ready.then(refresh);window.addEventListener('pageshow',refresh);refresh();
  }catch(error){media?.revert();root.classList.remove('gsap-ready','cinema-ready');console.warn('MIRA motion unavailable; shopping remains fully accessible.');}
 })();

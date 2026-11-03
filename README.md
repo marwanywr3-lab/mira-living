@@ -29,10 +29,17 @@ Open http://127.0.0.1:53182. For static hosting, publish the contents of `dist/`
 - Supplied product imagery and scroll reveals with a sticky product story.
 - GSAP logo entrance and separate MIRA FRIDGE / MIRA BREW scroll stories.
 - Light/dark appearance with a saved preference and automatic system default.
+- Reverse-scrolling three-column product gallery on desktop, with each product shown once.
+
+## Reverse-scroll product gallery
+
+The collection follows the [reverse-scroll reference](https://scroll-driven-animations.style/demos/reverse-scroll/css/): its middle column follows document scrolling while the two outer columns travel in the opposite direction. `dist/reverse-gallery.js` groups the seven existing interactive cards into three columns and measures their unequal heights; `dist/reverse-gallery.css` connects the outer transforms to a named CSS view timeline scoped to the collection. It does not change prices, product actions, page scrolling, or the separate FRIDGE / BREW stories.
+
+Native CSS scroll-driven animation is preferred. Browsers without the required timeline support use the already bundled GSAP ScrollTrigger. Smaller screens, short windows, reduced-motion preferences, missing animation libraries, and filtered subsets retain the regular product grid. Entering the gallery with the Tab key restores the static grid for the rest of the visit so focused controls remain easy to reach. Category and language changes rebuild the layout and refresh the later product story. There are no duplicated products, custom scroll handlers, or added dependencies.
 
 ## Scroll stories — complete integration
 
-The working files are `dist/index.html`, `dist/style.css`, `dist/app.js`, and `dist/motion.js`, plus the three JavaScript libraries under `dist/vendor/` and the two `*-cutout-v2.png` images under `dist/assets/`. Copy the complete `dist/` directory to preserve all relative paths; no install or build is needed.
+The working files are `dist/index.html`, `dist/style.css`, `dist/app.js`, `dist/motion.js`, `dist/reverse-gallery.css`, and `dist/reverse-gallery.js`, plus the three JavaScript libraries under `dist/vendor/` and the two `*-cutout-v2.png` images under `dist/assets/`. Copy the complete `dist/` directory to preserve all relative paths; no install or build is needed.
 
 `motion.js` owns animations only. Shop state, translations, theme, currency and checkout remain in `app.js`. The scripts are deferred in dependency order: catalog → GSAP → ScrollTrigger → MotionPathPlugin → app → motion. All three GSAP 3.15.0 libraries are self-hosted with their original license headers; see `dist/vendor/THIRD-PARTY-NOTICES.txt`.
 
@@ -64,5 +71,6 @@ This is a fictional brand and demonstration. No real transaction occurs. Use fic
 `dist/catalog.js` — editable catalog and image URLs.
 `dist/app.js` — translations, state, appearance and interactions.
 `dist/motion.js` — logo entrance and responsive scroll timelines.
+`dist/reverse-gallery.css` / `dist/reverse-gallery.js` — progressive reverse-scroll collection enhancement.
 
 Fonts load from Google Fonts with system fallbacks. The animation libraries are bundled locally; the store remains usable if motion enhancement is unavailable. No API keys are required.
