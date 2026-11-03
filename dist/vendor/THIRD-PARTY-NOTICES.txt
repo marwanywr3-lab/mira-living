@@ -1,10 +1,11 @@
-GSAP and ScrollTrigger 3.15.0
+GSAP, ScrollTrigger and MotionPathPlugin 3.15.0
 Copyright GreenSock. Original copyright/license headers are retained in each file.
 
 Source package: https://www.npmjs.com/package/gsap/v/3.15.0
 Distributed files:
 https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js
 https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js
+https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/MotionPathPlugin.min.js
 
 License declared by the package: Standard 'no charge' license.
 Full license and conditions: https://gsap.com/standard-license

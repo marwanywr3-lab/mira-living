@@ -32,20 +32,20 @@ Open http://127.0.0.1:53182. For static hosting, publish the contents of `dist/`
 
 ## Scroll stories — complete integration
 
-The working files are `dist/index.html`, `dist/style.css`, `dist/app.js`, and `dist/motion.js`, plus both JavaScript files under `dist/vendor/`. Copy the complete `dist/` directory to preserve all relative paths; no install or build is needed.
+The working files are `dist/index.html`, `dist/style.css`, `dist/app.js`, and `dist/motion.js`, plus the three JavaScript libraries under `dist/vendor/` and the two `*-cutout-v2.png` images under `dist/assets/`. Copy the complete `dist/` directory to preserve all relative paths; no install or build is needed.
 
-`motion.js` owns animations only. Shop state, translations, theme, currency and checkout remain in `app.js`. The scripts are deferred in dependency order: catalog → GSAP → ScrollTrigger → app → motion. GSAP and ScrollTrigger 3.15.0 are self-hosted, with their original license headers; see `dist/vendor/THIRD-PARTY-NOTICES.txt`.
+`motion.js` owns animations only. Shop state, translations, theme, currency and checkout remain in `app.js`. The scripts are deferred in dependency order: catalog → GSAP → ScrollTrigger → MotionPathPlugin → app → motion. All three GSAP 3.15.0 libraries are self-hosted with their original license headers; see `dist/vendor/THIRD-PARTY-NOTICES.txt`.
 
-Desktop stories use native CSS sticky stages and scrubbed image scale / rotation. Three visible editorial notes follow progress. Mobile and short windows use a natural document flow with gentle image movement and fully readable notes. The existing flat photography is animated as an image; it is not a 3D product model.
+The full-screen stories contain three scrubbed acts. FRIDGE assembles from three clipped image strips, moves into a large macro view, then reveals its original room photograph through an expanding iris. BREW moves along a curved MotionPath through orbital lines, zooms into its material detail, then opens the original kitchen photograph with a center curtain. The isolated objects use transparent image derivatives from the supplied photographs; they are photographic layers, not 3D models. See `ASSETS.md` for provenance and the exact image-tool prompts.
 
-`gsap.matchMedia()` reverts animations when breakpoints or the reduced-motion preference change. Reduced motion shows the full content without sticky scenes or movement. If the libraries fail to load, the static storefront still works. Only transforms and opacity animate during scrolling; no continuous custom scroll loop or scroll hijacking is used. Refreshes after language, font and image changes are debounced.
+`gsap.matchMedia()` reverts animations when breakpoints or the reduced-motion preference change. Mobile uses adjusted zoom and travel distances. Reduced-motion and short landscape windows show static product stages with immediately available purchase controls. If a motion dependency fails to load, the static storefront still works. Image/object movement uses transforms and opacity; a room layer additionally animates its CSS clip-path. There is no custom scroll loop or scroll hijacking. Language/font refreshes are debounced and wait for scrolling to stop. Image dimensions are explicit and do not trigger refreshes while decoding.
 
 To tune the experience:
 
-- Scene length: `.film-desktop-motion .product-film` in `style.css`.
+- Scene length: `.cinema-ready .cinema-film` in `style.css`.
 - Zoom, rotation, easing and scrub: the scene timeline in `motion.js`.
 - Scene copy: the bilingual strings in `app.js`.
-- Product photography / prices: `catalog.js`.
+- Product photography / prices: `catalog.js`; cinematic cutouts are referenced by the two sections in `index.html`.
 
 The appearance button follows the system theme until a visitor chooses a light/dark preference. This preference is stored with the language and currency settings. Printing a receipt keeps its original white paper design.
 

@@ -14,14 +14,19 @@
     // Apply the saved/system theme before the first paint. Storage is optional.
     try { const p=JSON.parse(localStorage.getItem('mira-preferences')||'{}'); document.documentElement.dataset.theme=['light','dark'].includes(p.theme)?p.theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); } catch { document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
   </script>
-  <link rel="stylesheet" href="style.css?v=20261103-motion-1">
+  <link rel="stylesheet" href="style.css?v=20261103-cinema-2">
   <script src="catalog.js?v=20261102-prices-2" defer></script>
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
-  <script src="app.js?v=20261103-motion-1" defer></script>
-  <script src="motion.js?v=20261103-motion-1" defer></script>
+  <script src="vendor/MotionPathPlugin.min.js" defer></script>
+  <script src="app.js?v=20261103-cinema-2" defer></script>
+  <script src="motion.js?v=20261103-cinema-2" defer></script>
 </head>
 <body>
+  <svg class="cinema-defs" aria-hidden="true"><defs>
+    <clipPath id="brew-silhouette" clipPathUnits="objectBoundingBox"><path d="M.19 .095 Q.19 .083 .23 .083 L.77 .083 Q.8 .084 .801 .097 L.866 .862 Q.878 .902 .842 .922 Q.5 .95 .168 .92 Q.121 .907 .124 .862 Z"/></clipPath>
+    <clipPath id="fridge-silhouette" clipPathUnits="objectBoundingBox"><path d="M.106 .091 Q.106 .086 .13 .085 L.78 .066 Q.801 .066 .814 .074 L.896 .113 L.898 .902 Q.899 .928 .853 .943 L.14 .925 Q.102 .924 .101 .898 Z"/></clipPath>
+  </defs></svg>
   <a class="skip" href="#collection" data-i18n="skip">انتقل للمجموعة</a>
   <header class="nav-wrap">
     <nav class="nav" aria-label="Main navigation">
@@ -56,46 +61,40 @@
       <h2 data-i18n="introTitle">مساحة للأشياء<br>التي تعني لك الكثير.</h2>
       <p data-i18n="introDesc">نؤمن أن أجمل التصاميم هي التي تنسجم مع حياتك. أشكال نقية، وألوان هادئة، وتفاصيل تجعل كل يوم مختلفًا.</p>
     </section>
-    <section class="product-film film-fridge" id="fridge-story" data-film="fridge" aria-labelledby="fridge-title">
-      <div class="film-stage">
-        <div class="film-copy">
-          <p class="eyebrow"><span class="film-index" dir="ltr">01 / 02</span><span>MIRA FRIDGE</span></p>
-          <h2 id="fridge-title" data-i18n="fridgeTitle">حضور يُكمل<br>المكان.</h2>
-          <p class="film-intro" data-i18n="fridgeIntro">خطوط هادئة. تفاصيل تستحق أن تقترب منها. ورؤية جديدة لقلب منزلك.</p>
-          <ol class="film-notes">
-            <li data-film-note><span class="note-number">01</span><div><h3 data-i18n="fridgeNote1">نقاء الخطوط</h3><p data-i18n="fridgeNote1Desc">شكل متوازن يترك للمساحة أن تتنفس.</p></div></li>
-            <li data-film-note><span class="note-number">02</span><div><h3 data-i18n="fridgeNote2">الجمال عن قرب</h3><p data-i18n="fridgeNote2Desc">درجات دافئة وتفاصيل تتكشف على مهل.</p></div></li>
-            <li data-film-note><span class="note-number">03</span><div><h3 data-i18n="fridgeNote3">ينتمي إلى منزلك</h3><p data-i18n="fridgeNote3Desc">تفصيلة كبيرة، بروح هادئة.</p></div></li>
-          </ol>
-          <div class="film-shop"><span class="film-price" data-price="fridge"></span><button class="button dark" data-detail="fridge"><span data-i18n="discoverFridge">اكتشف MIRA FRIDGE</span><span>↗</span></button></div>
+    <section class="product-film cinema-film film-fridge" id="fridge-story" data-film="fridge" aria-labelledby="fridge-title">
+      <div class="cinema-stage">
+        <div class="cinema-room" aria-hidden="true"><img src="assets/fridge.jpg" alt="" loading="eager" decoding="async" width="768" height="1376"></div>
+        <div class="cinema-halo" aria-hidden="true"></div>
+        <div class="cinema-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="cinema-word" aria-hidden="true">FRIDGE</div>
+        <div class="cinema-kicker"><span dir="ltr">01 / 02</span><span>MIRA FRIDGE</span></div>
+        <div class="cinema-object" aria-hidden="true">
+          <img class="cinema-intact" src="assets/fridge-cutout-v2.png" alt="" loading="eager" decoding="async">
+          <div class="cinema-slices"><div class="product-slice slice-0"><img src="assets/fridge-cutout-v2.png" alt="" loading="eager" decoding="async"></div><div class="product-slice slice-1"><img src="assets/fridge-cutout-v2.png" alt="" loading="eager" decoding="async"></div><div class="product-slice slice-2"><img src="assets/fridge-cutout-v2.png" alt="" loading="eager" decoding="async"></div></div>
         </div>
-        <div class="film-visual">
-          <div class="film-camera"><img src="assets/fridge.jpg" alt="MIRA FRIDGE — warm ivory, architectural front detail" loading="lazy" width="768" height="1376"></div>
-          <div class="film-picture-label"><span>MIRA FRIDGE</span><span data-i18n="ivory">عاجي دافئ</span></div>
-          <div class="film-focus" aria-hidden="true"><span data-i18n="fridgeNote1">نقاء الخطوط</span><span data-i18n="fridgeNote2">الجمال عن قرب</span><span data-i18n="fridgeNote3">ينتمي إلى منزلك</span></div>
-          <div class="film-progress" aria-hidden="true"><span></span></div>
-        </div>
+        <div class="cinema-lead"><p class="eyebrow" data-i18n="fridgeCinemaEye"></p><h2 id="fridge-title" data-i18n="fridgeCinemaTitle"></h2></div>
+        <div class="cinema-macro"><div class="macro-glass" role="img" aria-label="MIRA FRIDGE — close-up detail"></div><span class="macro-line" aria-hidden="true"></span><span class="tiny" data-i18n="fridgeMacroLabel"></span></div>
+        <div class="cinema-copy"><span class="eyebrow" data-i18n="fridgeDetailEye"></span><h3 data-i18n="fridgeDetailTitle"></h3><p data-i18n="fridgeDetailDesc"></p></div>
+        <div class="cinema-endcard"><p class="eyebrow">MIRA FRIDGE</p><h3 data-i18n="fridgeFinalTitle"></h3><div class="cinema-buy"><span class="film-price" data-price="fridge"></span><button class="button dark" data-detail="fridge"><span data-i18n="discoverFridge"></span><span>↗</span></button></div></div>
+        <div class="cinema-foot" aria-hidden="true"><div class="cinema-chapters"><span data-chapter data-i18n="cinemaForm"></span><span data-chapter data-i18n="cinemaDetail"></span><span data-chapter data-i18n="cinemaLife"></span></div><div class="cinema-track"><span></span></div><span class="cinema-count" dir="ltr">01 — 03</span></div>
       </div>
     </section>
-    <section class="product-film film-brew" id="spotlight" data-film="brew" aria-labelledby="spot-title">
-      <div class="film-stage">
-        <div class="film-visual">
-          <div class="film-camera"><img src="assets/brew.jpg" alt="MIRA BREW — warm ivory beside a sunlit kitchen window" loading="lazy" width="768" height="1376"></div>
-          <div class="film-picture-label"><span>MIRA BREW</span><span data-i18n="ivory">عاجي دافئ</span></div>
-          <div class="film-focus" aria-hidden="true"><span data-i18n="brewNote1">لحظتك الأولى</span><span data-i18n="brewNote2">تفاصيل تُحسّ</span><span data-i18n="brewNote3">طقس يخصّك</span></div>
-          <div class="film-progress" aria-hidden="true"><span></span></div>
+    <section class="product-film cinema-film film-brew" id="spotlight" data-film="brew" aria-labelledby="spot-title">
+      <div class="cinema-stage">
+        <div class="cinema-room" aria-hidden="true"><img src="assets/brew.jpg" alt="" loading="eager" decoding="async" width="768" height="1376"></div>
+        <div class="cinema-halo" aria-hidden="true"></div>
+        <div class="cinema-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="cinema-word" aria-hidden="true">BREW</div>
+        <div class="cinema-kicker"><span dir="ltr">02 / 02</span><span>MIRA BREW</span></div>
+        <div class="cinema-object" aria-hidden="true">
+          <img class="cinema-intact" src="assets/brew-cutout-v2.png" alt="" loading="eager" decoding="async">
+          <div class="cinema-slices"><div class="product-slice slice-0"><img src="assets/brew-cutout-v2.png" alt="" loading="eager" decoding="async"></div><div class="product-slice slice-1"><img src="assets/brew-cutout-v2.png" alt="" loading="eager" decoding="async"></div><div class="product-slice slice-2"><img src="assets/brew-cutout-v2.png" alt="" loading="eager" decoding="async"></div></div>
         </div>
-        <div class="film-copy">
-          <p class="eyebrow"><span class="film-index" dir="ltr">02 / 02</span><span>MIRA BREW</span></p>
-          <h2 id="spot-title" data-i18n="ritualTitle">صباحك.<br>على مهل.</h2>
-          <p class="film-intro" data-i18n="ritualDesc">ضوء النافذة. فنجانك المفضل. ولحظة تخصّك وحدك. MIRA BREW يكمّل المشهد.</p>
-          <ol class="film-notes">
-            <li data-film-note><span class="note-number">01</span><div><h3 data-i18n="brewNote1">لحظتك الأولى</h3><p data-i18n="brewNote1Desc">دع ضوء الصباح يبدأ الحكاية.</p></div></li>
-            <li data-film-note><span class="note-number">02</span><div><h3 data-i18n="brewNote2">تفاصيل تُحسّ</h3><p data-i18n="brewNote2Desc">منحنيات ناعمة وحضور دافئ.</p></div></li>
-            <li data-film-note><span class="note-number">03</span><div><h3 data-i18n="brewNote3">طقس يخصّك</h3><p data-i18n="brewNote3Desc">لأن أجمل اللحظات لا تحتاج إلى استعجال.</p></div></li>
-          </ol>
-          <div class="film-shop"><span class="film-price spot-price" data-price="brew"></span><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew">اكتشف MIRA BREW</span><span>↗</span></button></div>
-        </div>
+        <div class="cinema-lead"><p class="eyebrow" data-i18n="brewCinemaEye"></p><h2 id="spot-title" data-i18n="brewCinemaTitle"></h2></div>
+        <div class="cinema-macro"><div class="macro-glass" role="img" aria-label="MIRA BREW — close-up detail"></div><span class="macro-line" aria-hidden="true"></span><span class="tiny" data-i18n="brewMacroLabel"></span></div>
+        <div class="cinema-copy"><span class="eyebrow" data-i18n="brewDetailEye"></span><h3 data-i18n="brewDetailTitle"></h3><p data-i18n="brewDetailDesc"></p></div>
+        <div class="cinema-endcard"><p class="eyebrow">MIRA BREW</p><h3 data-i18n="brewFinalTitle"></h3><div class="cinema-buy"><span class="film-price" data-price="brew"></span><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew"></span><span>↗</span></button></div></div>
+        <div class="cinema-foot" aria-hidden="true"><div class="cinema-chapters"><span data-chapter data-i18n="cinemaForm"></span><span data-chapter data-i18n="cinemaDetail"></span><span data-chapter data-i18n="cinemaLife"></span></div><div class="cinema-track"><span></span></div><span class="cinema-count" dir="ltr">01 — 03</span></div>
       </div>
     </section>
     <section class="collection section-pad" id="collection" aria-labelledby="collection-title">

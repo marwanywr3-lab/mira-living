@@ -19,6 +19,16 @@
   brewNote1:'لحظتك الأولى',brewNote1Desc:'دع ضوء الصباح يبدأ الحكاية.',brewNote2:'تفاصيل تُحسّ',brewNote2Desc:'منحنيات ناعمة وحضور دافئ.',brewNote3:'طقس يخصّك',brewNote3Desc:'لأن أجمل اللحظات لا تحتاج إلى استعجال.',
   lightTheme:'التبديل إلى المظهر الفاتح',darkTheme:'التبديل إلى المظهر الداكن'
  });
+ Object.assign(strings.en, {
+  cinemaForm:'01 / FORM',cinemaDetail:'02 / DETAIL',cinemaLife:'03 / LIFE',
+  fridgeCinemaEye:'A NEW PERSPECTIVE',fridgeCinemaTitle:'Space.<br>Reimagined.',fridgeMacroLabel:'A closer perspective',fridgeDetailEye:'COME A LITTLE CLOSER',fridgeDetailTitle:'Every detail.<br>A reason to pause.',fridgeDetailDesc:'A pure silhouette. Warm ivory. Details that come into focus as you slow down.',fridgeFinalTitle:'Beautifully<br>at home.',
+  brewCinemaEye:'THE MORNING, REIMAGINED',brewCinemaTitle:'Make time.<br>For you.',brewMacroLabel:'Warm by nature',brewDetailEye:'BEAUTY YOU CAN FEEL',brewDetailTitle:'Soft curves.<br>Warm beginnings.',brewDetailDesc:'A gentle line. A warm wooden accent. A familiar ritual, seen in a different light.',brewFinalTitle:'Your morning.<br>Your moment.'
+ });
+ Object.assign(strings.ar, {
+  cinemaForm:'01 / الشكل',cinemaDetail:'02 / التفاصيل',cinemaLife:'03 / الحياة',
+  fridgeCinemaEye:'رؤية مختلفة للمكان',fridgeCinemaTitle:'مساحة.<br>برؤية جديدة.',fridgeMacroLabel:'التفاصيل عن قرب',fridgeDetailEye:'اقترب أكثر',fridgeDetailTitle:'لكل تفصيلة.<br>لحظة تستحقها.',fridgeDetailDesc:'ملامح نقية. عاجي دافئ. وتفاصيل تتضح كلما تمهّلت.',fridgeFinalTitle:'ينتمي.<br>إلى حياتك.',
+  brewCinemaEye:'صباحك، برؤية أخرى',brewCinemaTitle:'تمهّل.<br>هذه لحظتك.',brewMacroLabel:'دفء التفاصيل',brewDetailEye:'جمال يُحسّ',brewDetailTitle:'ملامح ناعمة.<br>بدايات دافئة.',brewDetailDesc:'انحناءة هادئة. لمسة خشب دافئة. وطقس مألوف، بضوء مختلف.',brewFinalTitle:'صباحك.<br>كما تحبّه.'
+ });
  function read(key, fallback) {try {return JSON.parse(localStorage.getItem(key)) ?? fallback;} catch {return fallback;}}
  const settings=read('mira-preferences',{});
  const systemTheme=window.matchMedia('(prefers-color-scheme: dark)');
