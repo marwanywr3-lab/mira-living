@@ -15,3 +15,9 @@
 @media(max-width:900px),(max-height:619px),(prefers-reduced-motion:reduce){
  .reverse-enabled .column-reverse{animation:none!important;transform:none!important}
 }
+.motion-toggle{position:fixed;z-index:12;bottom:22px;bottom:max(22px,env(safe-area-inset-bottom));inset-inline-end:4%;display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:44px;padding:12px 19px;border:1px solid var(--line);border-radius:50px;background:var(--white);color:var(--ink);box-shadow:0 4px 20px #0000000d;font-size:12px}
+.motion-icon{font-family:Inter,sans-serif;font-size:16px}
+html[data-motion=off]{scroll-behavior:auto}
+html[data-motion=off] .reveal{opacity:1;transform:none;transition:none}
+html[data-motion=off] .hero-copy>*,html[data-motion=off] .hero-visual>img{animation:none;opacity:1;transform:none}
+@media(max-width:760px){.motion-toggle{inset-inline-end:16px;bottom:max(16px,env(safe-area-inset-bottom));padding:11px 16px;font-size:11px}}

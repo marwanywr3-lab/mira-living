@@ -11,7 +11,7 @@
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
  const {gsap,ScrollTrigger}=window;
  let cards=[],columns=[],animation=null,observer=null,pending=false,keyboard=false,keyboardPaused=false,sizes='';
- const eligible=()=>viewport.matches&&!reduced.matches&&!keyboardPaused;
+ const eligible=()=>viewport.matches&&!reduced.matches&&!keyboardPaused&&document.documentElement.dataset.motion!=='off';
 
  function destroy(){
   observer?.disconnect();observer=null;
@@ -101,6 +101,7 @@
  function schedule(){if(!pending){pending=true;requestAnimationFrame(setup);}}
  document.addEventListener('mira:catalog',schedule);
  document.addEventListener('mira:layout',schedule);
+ document.addEventListener('mira:motion',()=>{keyboardPaused=false;schedule();});
  viewport.addEventListener('change',schedule);reduced.addEventListener('change',schedule);
  window.addEventListener('resize',schedule);
  // Keyboard browsing switches to a static catalog for the rest of this visit.

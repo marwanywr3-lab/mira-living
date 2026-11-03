@@ -33,13 +33,15 @@ Open http://127.0.0.1:53182. For static hosting, publish the contents of `dist/`
 
 ## Reverse-scroll product gallery
 
+The floating **Skip animations / تجاوز الحركة** button stops both product stories and the reverse gallery, restores the ordinary product grid, and moves focus directly to the collection. **Enable animations / إعادة الحركة** restores the presentation while respecting system reduced-motion preferences. The choice is saved separately as `mira-motion` and applied before the first paint; language and currency changes preserve it. The controller is `dist/motion-controls.js`, loaded after the shop state and before both animation modules. The control remains available on mobile.
+
 The collection follows the [reverse-scroll reference](https://scroll-driven-animations.style/demos/reverse-scroll/css/): its middle column follows document scrolling while the two outer columns travel in the opposite direction. `dist/reverse-gallery.js` groups the seven existing interactive cards into three columns and measures their unequal heights. A single GSAP ScrollTrigger animates both outer columns with a short 0.3-second scrub. The range extends from the collection entering the viewport until it leaves, so direction changes at the endpoints happen outside the visible collection instead of snapping inside it. Only the outer columns receive transform layer hints. It does not change prices, product actions, page scrolling, or the separate FRIDGE / BREW stories.
 
 Smaller screens, short windows, reduced-motion preferences, missing animation libraries, and filtered subsets retain the regular product grid. Entering the gallery with the Tab key restores the static grid for the rest of the visit so focused controls remain easy to reach. Catalog replacement rebuilds the layout; font/layout notifications only remeasure existing columns. Unchanged measurements do not request a ScrollTrigger refresh. Scroll anchoring is disabled inside the moving gallery to prevent browser position corrections. Animated desktop cards load their small catalog photos eagerly with asynchronous decoding: reverse transforms can otherwise delay native lazy loading until an image is already visible. Mobile retains lazy loading. There are no duplicated products, custom scroll handlers, or added dependencies.
 
 ## Scroll stories — complete integration
 
-The working files are `dist/index.html`, `dist/style.css`, `dist/app.js`, `dist/motion.js`, `dist/reverse-gallery.css`, and `dist/reverse-gallery.js`, plus the three JavaScript libraries under `dist/vendor/` and the two `*-cutout-v2.png` images under `dist/assets/`. Copy the complete `dist/` directory to preserve all relative paths; no install or build is needed.
+The working files are `dist/index.html`, `dist/style.css`, `dist/app.js`, `dist/motion-controls.js`, `dist/motion.js`, `dist/reverse-gallery.css`, and `dist/reverse-gallery.js`, plus the three JavaScript libraries under `dist/vendor/` and the two `*-cutout-v2.png` images under `dist/assets/`. Copy the complete `dist/` directory to preserve all relative paths; no install or build is needed.
 
 `motion.js` owns animations only. Shop state, translations, theme, currency and checkout remain in `app.js`. The scripts are deferred in dependency order: catalog → GSAP → ScrollTrigger → MotionPathPlugin → app → motion. All three GSAP 3.15.0 libraries are self-hosted with their original license headers; see `dist/vendor/THIRD-PARTY-NOTICES.txt`.
 
@@ -71,6 +73,7 @@ This is a fictional brand and demonstration. No real transaction occurs. Use fic
 `dist/catalog.js` — editable catalog and image URLs.
 `dist/app.js` — translations, state, appearance and interactions.
 `dist/motion.js` — logo entrance and responsive scroll timelines.
+`dist/motion-controls.js` — persistent bilingual animation bypass and restoration.
 `dist/reverse-gallery.css` / `dist/reverse-gallery.js` — progressive reverse-scroll collection enhancement.
 
 Fonts load from Google Fonts with system fallbacks. The animation libraries are bundled locally; the store remains usable if motion enhancement is unavailable. No API keys are required.

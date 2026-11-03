@@ -13,16 +13,18 @@
   <script>
     // Apply the saved/system theme before the first paint. Storage is optional.
     try { const p=JSON.parse(localStorage.getItem('mira-preferences')||'{}'); document.documentElement.dataset.theme=['light','dark'].includes(p.theme)?p.theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); } catch { document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+    try { if(localStorage.getItem('mira-motion')==='off') document.documentElement.dataset.motion='off'; } catch {}
   </script>
-  <link rel="stylesheet" href="style.css?v=20261103-smooth-9">
-  <link rel="stylesheet" href="reverse-gallery.css?v=20261103-smooth-9">
+  <link rel="stylesheet" href="style.css?v=20261103-skip-10">
+  <link rel="stylesheet" href="reverse-gallery.css?v=20261103-skip-10">
   <script src="catalog.js?v=20261102-prices-2" defer></script>
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="vendor/MotionPathPlugin.min.js" defer></script>
-  <script src="app.js?v=20261103-smooth-9" defer></script>
-  <script src="motion.js?v=20261103-smooth-9" defer></script>
-  <script src="reverse-gallery.js?v=20261103-smooth-9" defer></script>
+  <script src="app.js?v=20261103-skip-10" defer></script>
+  <script src="motion-controls.js?v=20261103-skip-10" defer></script>
+  <script src="motion.js?v=20261103-skip-10" defer></script>
+  <script src="reverse-gallery.js?v=20261103-skip-10" defer></script>
 </head>
 <body>
   <svg class="cinema-defs" aria-hidden="true"><defs>
@@ -82,7 +84,7 @@
         <div class="cinema-foot" aria-hidden="true"><div class="cinema-chapters"><span data-chapter data-i18n="cinemaForm"></span><span data-chapter data-i18n="cinemaDetail"></span><span data-chapter data-i18n="cinemaLife"></span></div><div class="cinema-track"><span></span></div><span class="cinema-count" dir="ltr">01 — 03</span></div>
       </div>
     </section>
-    <section class="collection section-pad" id="collection" aria-labelledby="collection-title">
+    <section class="collection section-pad" id="collection" aria-labelledby="collection-title" tabindex="-1">
       <div class="section-head reveal"><div><p class="eyebrow" data-i18n="sevenEssentials">سبعة أساسيات. عالم واحد.</p><h2 id="collection-title" data-i18n="collectionTitle">انسجام في كل ركن.</h2></div><p data-i18n="collectionDesc">اختر ما يشبهك.<br>دع البساطة تتولى الباقي.</p></div>
       <div class="collection-toolbar"><div id="filters" class="filters" role="group" aria-label="Product categories"></div><span class="product-count" id="product-count" aria-live="polite"></span></div>
       <div class="product-grid" id="product-grid"></div>
@@ -112,6 +114,7 @@
   <footer><div class="footer-top"><a href="#" class="logo">MIRA<span>®</span></a><span data-i18n="footerTag">للحياة، بكل جمالها.</span><a href="#collection" data-i18n="collection">المجموعة</a><a href="#philosophy" data-i18n="philosophy">فلسفتنا</a></div><div class="footer-bottom"><span>© 2026 MIRA</span><p data-i18n="demoFooter">علامة افتراضية وتجربة تسوّق تجريبية. لا تُحصّل أي مبالغ.</p><span data-i18n="designedCare">صُمّم بعناية.</span></div></footer>
   <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-name"><div id="detail-content"></div></dialog>
   <dialog id="checkout-dialog" class="checkout-dialog" aria-labelledby="checkout-heading"><div class="drawer-head"><span class="logo">MIRA</span><button class="round-button close-checkout" aria-label="Close checkout">×</button></div><div id="checkout-content"></div></dialog>
+  <button id="motion-toggle" class="motion-toggle" aria-controls="collection fridge-story spotlight"><span class="motion-label">تجاوز الحركة</span><span class="motion-icon" aria-hidden="true">↓</span></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

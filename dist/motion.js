@@ -10,9 +10,11 @@
  const refresh=()=>{clearTimeout(timer);timer=setTimeout(()=>ScrollTrigger.refresh(true),150);};
  try{
   gsap.registerPlugin(ScrollTrigger);if(MotionPathPlugin)gsap.registerPlugin(MotionPathPlugin);
-  ScrollTrigger.config({ignoreMobileResize:true});media=gsap.matchMedia();
+  ScrollTrigger.config({ignoreMobileResize:true});
+  function build(){
+  media?.revert();media=gsap.matchMedia();
   media.add({wide:'(min-width: 901px)',small:'(max-width: 900px)',compact:'(max-height: 619px)',reduced:'(prefers-reduced-motion: reduce)'},context=>{
-   if(context.conditions.reduced||context.conditions.compact)return;
+   if(root.dataset.motion==='off'||context.conditions.reduced||context.conditions.compact)return;
    const small=context.conditions.small,direction=()=>root.dir==='rtl'?1:-1;
    root.classList.add('gsap-ready');
    gsap.fromTo('.logo-letter',{yPercent:20,opacity:0},{yPercent:0,opacity:1,duration:.9,stagger:.045,ease:'power2.out',clearProps:'all'});
@@ -64,6 +66,8 @@
     films.forEach(section=>{section.classList.remove('cinema-in-room');section.querySelector('.cinema-object').style.willChange='';});
    };
   });
+  }
+  build();document.addEventListener('mira:motion',()=>{build();refresh();});
   document.addEventListener('mira:layout',refresh);document.addEventListener('mira:catalog',refresh);document.fonts?.ready.then(refresh);window.addEventListener('pageshow',refresh);refresh();
  }catch(error){media?.revert();root.classList.remove('gsap-ready','cinema-ready');console.warn('MIRA motion unavailable; shopping remains fully accessible.');}
 })();
