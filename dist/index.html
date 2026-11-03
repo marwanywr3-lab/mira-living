@@ -10,9 +10,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply the saved/system theme before the first paint. Storage is optional.
+    try { const p=JSON.parse(localStorage.getItem('mira-preferences')||'{}'); document.documentElement.dataset.theme=['light','dark'].includes(p.theme)?p.theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); } catch { document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  </script>
+  <link rel="stylesheet" href="style.css?v=20261103-motion-1">
   <script src="catalog.js?v=20261102-prices-2" defer></script>
-  <script src="app.js" defer></script>
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="app.js?v=20261103-motion-1" defer></script>
+  <script src="motion.js?v=20261103-motion-1" defer></script>
 </head>
 <body>
   <a class="skip" href="#collection" data-i18n="skip">انتقل للمجموعة</a>
@@ -21,6 +28,7 @@
       <a href="#" class="logo" aria-label="MIRA home">MIRA<span>®</span></a>
       <div class="nav-links"><a href="#collection" data-i18n="collection">المجموعة</a><a href="#philosophy" data-i18n="philosophy">فلسفتنا</a></div>
       <div class="nav-tools">
+        <button id="theme" class="theme-button" aria-label="تبديل المظهر" aria-pressed="false"><svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg></button>
         <button id="language" class="text-button" aria-label="Switch to English">EN</button>
         <span class="nav-divider"></span>
         <button id="currency" class="text-button currency">SAR <span>⌄</span></button>
@@ -32,10 +40,10 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow" data-i18n="heroEye">فن الحياة اليومية</p>
-        <h1 id="hero-title"><span class="hero-brand">MIRA.</span><span data-i18n="heroTitle">استثنائية.<br>بكل بساطة.</span></h1>
+        <h1 id="hero-title"><span class="hero-brand" role="img" aria-label="MIRA"><span class="logo-letters" aria-hidden="true"><span class="logo-letter">M</span><span class="logo-letter">I</span><span class="logo-letter">R</span><span class="logo-letter">A</span><span class="logo-letter">.</span></span><span class="brand-rule" aria-hidden="true"></span></span><span data-i18n="heroTitle">استثنائية.<br>بكل بساطة.</span></h1>
         <p class="hero-description" data-i18n="heroDesc">تفاصيل أقل. إحساس أعمق.<br>سبعة أجهزة، ورؤية واحدة لحياة أجمل.</p>
         <a class="button dark" href="#collection"><span data-i18n="explore">اكتشف المجموعة</span><span class="arrow">↗</span></a>
-        <div class="hero-bottom"><span class="tiny" data-i18n="collectionYear">مجموعة MIRA / 2026</span><a href="#spotlight" class="scroll-cue"><span data-i18n="scroll">مرّر للاكتشاف</span> ↓</a></div>
+        <div class="hero-bottom"><span class="tiny" data-i18n="collectionYear">مجموعة MIRA / 2026</span><a href="#fridge-story" class="scroll-cue"><span data-i18n="scroll">مرّر للاكتشاف</span> ↓</a></div>
       </div>
       <div class="hero-visual">
         <img src="assets/home.jpg" alt="MIRA HOME in a warm, minimal kitchen" fetchpriority="high" width="768" height="1376">
@@ -48,9 +56,47 @@
       <h2 data-i18n="introTitle">مساحة للأشياء<br>التي تعني لك الكثير.</h2>
       <p data-i18n="introDesc">نؤمن أن أجمل التصاميم هي التي تنسجم مع حياتك. أشكال نقية، وألوان هادئة، وتفاصيل تجعل كل يوم مختلفًا.</p>
     </section>
-    <section class="spotlight" id="spotlight" aria-labelledby="spot-title">
-      <div class="spot-image"><img src="assets/brew.jpg" alt="MIRA BREW in warm ivory beside a kitchen window" loading="lazy" width="768" height="1376"><div class="spot-image-caption"><span>MIRA BREW</span><span data-i18n="ivory">عاجي دافئ</span></div></div>
-      <div class="spot-story"><div class="spot-sticky reveal"><span class="eyebrow" data-i18n="ritualEye">طقوس صغيرة، لحظات كبيرة</span><h2 id="spot-title" data-i18n="ritualTitle">صباحك.<br>على مهل.</h2><p data-i18n="ritualDesc">ضوء النافذة. فنجانك المفضل. ولحظة تخصّك وحدك. MIRA BREW يكمّل المشهد.</p><div class="spot-price" data-price="brew"></div><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew">اكتشف MIRA BREW</span><span class="arrow">↗</span></button><div class="story-line"><span>01</span><div></div><span data-i18n="everydayRitual">طقوس كل يوم</span></div></div></div>
+    <section class="product-film film-fridge" id="fridge-story" data-film="fridge" aria-labelledby="fridge-title">
+      <div class="film-stage">
+        <div class="film-copy">
+          <p class="eyebrow"><span class="film-index" dir="ltr">01 / 02</span><span>MIRA FRIDGE</span></p>
+          <h2 id="fridge-title" data-i18n="fridgeTitle">حضور يُكمل<br>المكان.</h2>
+          <p class="film-intro" data-i18n="fridgeIntro">خطوط هادئة. تفاصيل تستحق أن تقترب منها. ورؤية جديدة لقلب منزلك.</p>
+          <ol class="film-notes">
+            <li data-film-note><span class="note-number">01</span><div><h3 data-i18n="fridgeNote1">نقاء الخطوط</h3><p data-i18n="fridgeNote1Desc">شكل متوازن يترك للمساحة أن تتنفس.</p></div></li>
+            <li data-film-note><span class="note-number">02</span><div><h3 data-i18n="fridgeNote2">الجمال عن قرب</h3><p data-i18n="fridgeNote2Desc">درجات دافئة وتفاصيل تتكشف على مهل.</p></div></li>
+            <li data-film-note><span class="note-number">03</span><div><h3 data-i18n="fridgeNote3">ينتمي إلى منزلك</h3><p data-i18n="fridgeNote3Desc">تفصيلة كبيرة، بروح هادئة.</p></div></li>
+          </ol>
+          <div class="film-shop"><span class="film-price" data-price="fridge"></span><button class="button dark" data-detail="fridge"><span data-i18n="discoverFridge">اكتشف MIRA FRIDGE</span><span>↗</span></button></div>
+        </div>
+        <div class="film-visual">
+          <div class="film-camera"><img src="assets/fridge.jpg" alt="MIRA FRIDGE — warm ivory, architectural front detail" loading="lazy" width="768" height="1376"></div>
+          <div class="film-picture-label"><span>MIRA FRIDGE</span><span data-i18n="ivory">عاجي دافئ</span></div>
+          <div class="film-focus" aria-hidden="true"><span data-i18n="fridgeNote1">نقاء الخطوط</span><span data-i18n="fridgeNote2">الجمال عن قرب</span><span data-i18n="fridgeNote3">ينتمي إلى منزلك</span></div>
+          <div class="film-progress" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </section>
+    <section class="product-film film-brew" id="spotlight" data-film="brew" aria-labelledby="spot-title">
+      <div class="film-stage">
+        <div class="film-visual">
+          <div class="film-camera"><img src="assets/brew.jpg" alt="MIRA BREW — warm ivory beside a sunlit kitchen window" loading="lazy" width="768" height="1376"></div>
+          <div class="film-picture-label"><span>MIRA BREW</span><span data-i18n="ivory">عاجي دافئ</span></div>
+          <div class="film-focus" aria-hidden="true"><span data-i18n="brewNote1">لحظتك الأولى</span><span data-i18n="brewNote2">تفاصيل تُحسّ</span><span data-i18n="brewNote3">طقس يخصّك</span></div>
+          <div class="film-progress" aria-hidden="true"><span></span></div>
+        </div>
+        <div class="film-copy">
+          <p class="eyebrow"><span class="film-index" dir="ltr">02 / 02</span><span>MIRA BREW</span></p>
+          <h2 id="spot-title" data-i18n="ritualTitle">صباحك.<br>على مهل.</h2>
+          <p class="film-intro" data-i18n="ritualDesc">ضوء النافذة. فنجانك المفضل. ولحظة تخصّك وحدك. MIRA BREW يكمّل المشهد.</p>
+          <ol class="film-notes">
+            <li data-film-note><span class="note-number">01</span><div><h3 data-i18n="brewNote1">لحظتك الأولى</h3><p data-i18n="brewNote1Desc">دع ضوء الصباح يبدأ الحكاية.</p></div></li>
+            <li data-film-note><span class="note-number">02</span><div><h3 data-i18n="brewNote2">تفاصيل تُحسّ</h3><p data-i18n="brewNote2Desc">منحنيات ناعمة وحضور دافئ.</p></div></li>
+            <li data-film-note><span class="note-number">03</span><div><h3 data-i18n="brewNote3">طقس يخصّك</h3><p data-i18n="brewNote3Desc">لأن أجمل اللحظات لا تحتاج إلى استعجال.</p></div></li>
+          </ol>
+          <div class="film-shop"><span class="film-price spot-price" data-price="brew"></span><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew">اكتشف MIRA BREW</span><span>↗</span></button></div>
+        </div>
+      </div>
     </section>
     <section class="collection section-pad" id="collection" aria-labelledby="collection-title">
       <div class="section-head reveal"><div><p class="eyebrow" data-i18n="sevenEssentials">سبعة أساسيات. عالم واحد.</p><h2 id="collection-title" data-i18n="collectionTitle">انسجام في كل ركن.</h2></div><p data-i18n="collectionDesc">اختر ما يشبهك.<br>دع البساطة تتولى الباقي.</p></div>
