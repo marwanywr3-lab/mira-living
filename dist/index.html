@@ -14,13 +14,13 @@
     // Apply the saved/system theme before the first paint. Storage is optional.
     try { const p=JSON.parse(localStorage.getItem('mira-preferences')||'{}'); document.documentElement.dataset.theme=['light','dark'].includes(p.theme)?p.theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); } catch { document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
   </script>
-  <link rel="stylesheet" href="style.css?v=20261103-cinema-2">
+  <link rel="stylesheet" href="style.css?v=20261103-usability-3">
   <script src="catalog.js?v=20261102-prices-2" defer></script>
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="vendor/MotionPathPlugin.min.js" defer></script>
-  <script src="app.js?v=20261103-cinema-2" defer></script>
-  <script src="motion.js?v=20261103-cinema-2" defer></script>
+  <script src="app.js?v=20261103-usability-3" defer></script>
+  <script src="motion.js?v=20261103-usability-3" defer></script>
 </head>
 <body>
   <svg class="cinema-defs" aria-hidden="true"><defs>
@@ -75,7 +75,8 @@
         <div class="cinema-lead"><p class="eyebrow" data-i18n="fridgeCinemaEye"></p><h2 id="fridge-title" data-i18n="fridgeCinemaTitle"></h2></div>
         <div class="cinema-macro"><div class="macro-glass" role="img" aria-label="MIRA FRIDGE — close-up detail"></div><span class="macro-line" aria-hidden="true"></span><span class="tiny" data-i18n="fridgeMacroLabel"></span></div>
         <div class="cinema-copy"><span class="eyebrow" data-i18n="fridgeDetailEye"></span><h3 data-i18n="fridgeDetailTitle"></h3><p data-i18n="fridgeDetailDesc"></p></div>
-        <div class="cinema-endcard"><p class="eyebrow">MIRA FRIDGE</p><h3 data-i18n="fridgeFinalTitle"></h3><div class="cinema-buy"><span class="film-price" data-price="fridge"></span><button class="button dark" data-detail="fridge"><span data-i18n="discoverFridge"></span><span>↗</span></button></div></div>
+        <div class="cinema-endcard"><p class="eyebrow">MIRA FRIDGE</p><h3 data-i18n="fridgeFinalTitle"></h3></div>
+        <div class="cinema-actions"><div class="cinema-buy"><span class="film-price" data-price="fridge"></span><button class="button dark" data-detail="fridge"><span data-i18n="discoverFridge"></span><span>↗</span></button></div><a class="cinema-all" href="#collection" data-i18n="collection">المجموعة</a></div>
         <div class="cinema-foot" aria-hidden="true"><div class="cinema-chapters"><span data-chapter data-i18n="cinemaForm"></span><span data-chapter data-i18n="cinemaDetail"></span><span data-chapter data-i18n="cinemaLife"></span></div><div class="cinema-track"><span></span></div><span class="cinema-count" dir="ltr">01 — 03</span></div>
       </div>
     </section>
@@ -93,7 +94,8 @@
         <div class="cinema-lead"><p class="eyebrow" data-i18n="brewCinemaEye"></p><h2 id="spot-title" data-i18n="brewCinemaTitle"></h2></div>
         <div class="cinema-macro"><div class="macro-glass" role="img" aria-label="MIRA BREW — close-up detail"></div><span class="macro-line" aria-hidden="true"></span><span class="tiny" data-i18n="brewMacroLabel"></span></div>
         <div class="cinema-copy"><span class="eyebrow" data-i18n="brewDetailEye"></span><h3 data-i18n="brewDetailTitle"></h3><p data-i18n="brewDetailDesc"></p></div>
-        <div class="cinema-endcard"><p class="eyebrow">MIRA BREW</p><h3 data-i18n="brewFinalTitle"></h3><div class="cinema-buy"><span class="film-price" data-price="brew"></span><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew"></span><span>↗</span></button></div></div>
+        <div class="cinema-endcard"><p class="eyebrow">MIRA BREW</p><h3 data-i18n="brewFinalTitle"></h3></div>
+        <div class="cinema-actions"><div class="cinema-buy"><span class="film-price" data-price="brew"></span><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew"></span><span>↗</span></button></div><a class="cinema-all" href="#collection" data-i18n="collection">المجموعة</a></div>
         <div class="cinema-foot" aria-hidden="true"><div class="cinema-chapters"><span data-chapter data-i18n="cinemaForm"></span><span data-chapter data-i18n="cinemaDetail"></span><span data-chapter data-i18n="cinemaLife"></span></div><div class="cinema-track"><span></span></div><span class="cinema-count" dir="ltr">01 — 03</span></div>
       </div>
     </section>

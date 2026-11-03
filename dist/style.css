@@ -196,3 +196,38 @@ html:not(.cinema-ready) .cinema-foot,html:not(.cinema-ready) .cinema-orbit{displ
 html[data-theme=dark] .cinema-stage::after,.cinema-in-room .cinema-stage::after{content:"";position:absolute;z-index:7;left:0;right:0;bottom:0;height:115px;background:linear-gradient(transparent,#08090bd9);pointer-events:none}.cinema-kicker{color:#fff;mix-blend-mode:difference}.cinema-kicker>span:first-child{color:inherit;opacity:.75}
 .cinema-ready{scroll-behavior:auto}.cinema-object{filter:none}
 .cinema-lead{inset-inline-start:auto;inset-inline-end:7%;width:29%}@media(max-width:900px){.cinema-lead{inset-inline-start:auto;inset-inline-end:6%;top:17%;width:74%}}
+/* Shopping first: short desktop stories, normal mobile flow, permanent actions. */
+.cinema-ready .cinema-film,.cinema-ready .film-brew{height:180svh;min-height:1100px}
+.cinema-object,.film-brew .cinema-object{height:64%;inset:18% 0 18%}
+.cinema-slices,.cinema-ready .cinema-slices,.cinema-foot{display:none!important}
+.cinema-intact{visibility:visible;opacity:1}
+.cinema-orbit{opacity:.25}
+.cinema-actions{position:absolute;z-index:20;bottom:26px;inset-inline:7%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:12px 18px;border:1px solid var(--cinema-outline);border-radius:6px;background:var(--cinema-panel);backdrop-filter:blur(16px);color:var(--cinema-ink)}
+.cinema-actions .cinema-buy{gap:20px}
+.cinema-actions .button{min-height:44px}
+.cinema-all{font-size:11px;text-decoration:underline;text-underline-offset:4px;padding:12px 2px;white-space:nowrap}
+.cinema-ready .cinema-endcard{bottom:125px;padding:20px 26px;width:min(430px,38%)}
+.cinema-ready .cinema-endcard h3{font-size:clamp(32px,3vw,48px);margin-bottom:0}
+.cinema-macro{top:58%}
+.cinema-stage::after{height:0!important}
+@media(max-width:900px){
+ .cinema-film,.cinema-ready .cinema-film,.cinema-ready .film-brew{height:auto;min-height:0}
+ .cinema-stage,.cinema-ready .cinema-stage{position:relative;display:flex;flex-direction:column;align-items:stretch;height:auto;min-height:0;padding:82px 6% 28px;gap:24px;overflow:hidden}
+ .cinema-kicker{top:28px;inset-inline:6%;font-size:8px;mix-blend-mode:normal;color:var(--cinema-ink)}
+ .cinema-kicker>span:first-child{color:var(--cinema-muted)}
+ .cinema-lead{position:relative;inset:auto!important;width:auto;order:0;text-align:start}
+ .cinema-lead>.eyebrow{margin-bottom:12px}
+ .cinema-lead h2,html[lang=ar] .cinema-lead h2{font-size:36px;line-height:1.25}
+ .cinema-object,.film-brew .cinema-object,html:not(.cinema-ready) .cinema-object{position:relative;inset:auto!important;height:auto;width:min(58vw,240px);margin:0 auto;order:1;flex-shrink:0}
+ .cinema-word{top:48%;left:0;font-size:26vw;pointer-events:none}
+ .film-brew .cinema-word{font-size:32vw}
+ .cinema-room,.cinema-copy,.cinema-macro,.cinema-endcard,.cinema-orbit{display:none!important}
+ .cinema-actions{position:relative;inset:auto;width:100%;order:2;padding:18px 0 0;border:0;border-top:1px solid var(--cinema-outline);border-radius:0;background:transparent;backdrop-filter:none;gap:12px;flex-wrap:wrap}
+ .cinema-actions .cinema-buy{gap:14px;flex-wrap:wrap}
+ .cinema-actions .button{font-size:10px;padding:14px 19px}
+ .cinema-actions .film-price{font-size:12px}
+ .cinema-all{font-size:10px}
+}
+@media(max-height:619px),(prefers-reduced-motion:reduce){
+ .cinema-actions{visibility:visible!important;opacity:1!important;transform:none!important}
+}
