@@ -1,7 +1,7 @@
 /* MIRA product columns. Inspired by the user's reverse-scroll reference:
  * https://scroll-driven-animations.style/demos/reverse-scroll/css/
  * The center follows document scroll. The outer columns travel the other way.
- * Native CSS view timelines are preferred; ScrollTrigger is the fallback.
+ * One ScrollTrigger drives both outer columns, with a short smoothing scrub.
  */
 (() => {
  'use strict';
@@ -9,13 +9,13 @@
  if(!grid)return;
  const viewport=window.matchMedia('(min-width: 901px) and (min-height: 620px)');
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
- const native=typeof CSS!=='undefined'&&CSS.supports('animation-timeline','view()')&&CSS.supports('animation-range','contain 0% contain 100%');
- let cards=[],columns=[],tweens=[],observer=null,pending=false,keyboard=false,keyboardPaused=false;
+ const {gsap,ScrollTrigger}=window;
+ let cards=[],columns=[],animation=null,observer=null,pending=false,keyboard=false,keyboardPaused=false,sizes='';
  const eligible=()=>viewport.matches&&!reduced.matches&&!keyboardPaused;
 
  function destroy(){
   observer?.disconnect();observer=null;
-  tweens.forEach(tween=>tween.revert());tweens=[];
+  animation?.revert();animation=null;sizes='';
   const attached=columns.length&&columns.every(column=>column.parentNode===grid);
   grid.classList.remove('reverse-layout','reverse-enabled','reverse-css','reverse-gsap');
   if(attached){
@@ -30,24 +30,32 @@
 
  function measure(){
   if(!columns.length||!columns.every(column=>column.isConnected))return false;
-  // The timeline's inset leaves room for the floating navigation and bottom gap.
-  const frame=Math.max(1,window.innerHeight-140);
   const heights=columns.map(column=>column.offsetHeight);
-  const travel=Math.max(...heights)-frame;
-  // One-card/filter results stay in the regular grid; no empty animated runway.
-  if(travel<100||Math.min(...heights)<=frame+30)return false;
+  const height=Math.max(...heights);
+  // Keep an actual reverse direction even in a tall desktop viewport.
+  if(Math.min(...heights)<=window.innerHeight+30)return false;
+  const nextSizes=`${window.innerHeight}:${heights.join(':')}`;
+  if(nextSizes===sizes)return true;
+  sizes=nextSizes;
   columns.forEach((column,index)=>{
-   column.style.setProperty('--reverse-from',`${frame-heights[index]}px`);
-   column.style.setProperty('--reverse-to',`${travel}px`);
+   column.style.setProperty('--reverse-from',`${-heights[index]}px`);
+   column.style.setProperty('--reverse-to',`${height}px`);
   });
+  if(animation)ScrollTrigger.refresh(true);
   return true;
  }
 
  function setup(){
-  pending=false;destroy();
+  pending=false;
+  // Font/layout notifications need a measurement, not a DOM teardown.
+  if(eligible()&&columns.length&&columns.every(column=>column.parentNode===grid)){
+   if(!measure())destroy();
+   return;
+  }
+  destroy();
   const current=[...grid.children].filter(el=>el.classList.contains('product-card'));
   if(!eligible()||current.length!==7)return;
-  if(!native&&(!window.gsap||!window.ScrollTrigger))return;
+  if(!gsap||!ScrollTrigger)return;
   cards=current;
   // Each appliance appears once. The center has the extra seventh product.
   const groups=[[0,3],[1,4,6],[2,5]];
@@ -64,22 +72,18 @@
   });
   grid.replaceChildren(...columns);grid.classList.add('reverse-layout');
   if(!measure()){destroy();return;}
-  grid.classList.add('reverse-enabled',native?'reverse-css':'reverse-gsap');
-  if(!native){
-   columns.filter(column=>column.classList.contains('column-reverse')).forEach(column=>{
-    tweens.push(window.gsap.fromTo(column,
-     {y:()=>parseFloat(column.style.getPropertyValue('--reverse-from'))},
-     {y:()=>parseFloat(column.style.getPropertyValue('--reverse-to')),ease:'none',scrollTrigger:{
-      id:'mira-reverse-products',trigger:grid,start:'top 110px',end:'bottom bottom-=30px',scrub:true,invalidateOnRefresh:true
-     }}));
-   });
-  }
+  grid.classList.add('reverse-enabled','reverse-gsap');
+  try{
+   gsap.registerPlugin(ScrollTrigger);
+   animation=gsap.fromTo(columns.filter(column=>column.classList.contains('column-reverse')),
+    {y:(_index,column)=>parseFloat(column.style.getPropertyValue('--reverse-from'))},
+    {y:(_index,column)=>parseFloat(column.style.getPropertyValue('--reverse-to')),force3D:true,ease:'none',scrollTrigger:{
+     id:'mira-reverse-products',trigger:grid,start:'top bottom',end:'bottom top',scrub:.3,invalidateOnRefresh:true
+    }});
+  }catch{destroy();return;}
   // Transforms do not change these sizes, so the observer has no scroll loop.
   if('ResizeObserver' in window){
-   observer=new ResizeObserver(()=>{
-    if(!measure()){destroy();return;}
-    if(!native)window.ScrollTrigger.refresh(true);
-   });
+   observer=new ResizeObserver(schedule);
    columns.forEach(column=>observer.observe(column));
   }
  }
@@ -87,10 +91,7 @@
  document.addEventListener('mira:catalog',schedule);
  document.addEventListener('mira:layout',schedule);
  viewport.addEventListener('change',schedule);reduced.addEventListener('change',schedule);
- window.addEventListener('resize',()=>{
-  if(!eligible()){destroy();return;}
-  if(!columns.length)schedule();else if(!measure())destroy();
- });
+ window.addEventListener('resize',schedule);
  // Keyboard browsing switches to a static catalog for the rest of this visit.
  // No focus target is carried off-screen by a reverse-moving column.
  document.addEventListener('keydown',event=>{if(event.key==='Tab')keyboard=true;},true);

@@ -5,26 +5,13 @@
  align-items:start;
  gap:24px;
  overflow:clip;
+ overflow-anchor:none;
  position:relative;
- view-timeline-name:--mira-products;
- view-timeline-axis:block;
- view-timeline-inset:110px 30px;
 }
 .product-column{display:flex;flex-direction:column;gap:45px;min-width:0}
 .product-column.column-reverse{flex-direction:column-reverse}
 .reverse-enabled .product-card.reveal{opacity:1;transform:none;transition:none}
-.reverse-enabled .column-reverse{transform:translateY(var(--reverse-from))}
-@keyframes mira-reverse-products{
- from{transform:translateY(var(--reverse-from))}
- to{transform:translateY(var(--reverse-to))}
-}
-@supports (animation-timeline:view()) and (animation-range:contain 0% contain 100%){
- .reverse-css .column-reverse{
-  animation:mira-reverse-products 1s linear both;
-  animation-timeline:--mira-products;
-  animation-range:contain 0% contain 100%;
- }
-}
+.reverse-enabled .column-reverse{will-change:transform}
 @media(max-width:900px),(max-height:619px),(prefers-reduced-motion:reduce){
  .reverse-enabled .column-reverse{animation:none!important;transform:none!important}
 }
