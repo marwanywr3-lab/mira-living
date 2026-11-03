@@ -14,13 +14,13 @@
     // Apply the saved/system theme before the first paint. Storage is optional.
     try { const p=JSON.parse(localStorage.getItem('mira-preferences')||'{}'); document.documentElement.dataset.theme=['light','dark'].includes(p.theme)?p.theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); } catch { document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
   </script>
-  <link rel="stylesheet" href="style.css?v=20261103-usability-3">
+  <link rel="stylesheet" href="style.css?v=20261103-paced-4">
   <script src="catalog.js?v=20261102-prices-2" defer></script>
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="vendor/MotionPathPlugin.min.js" defer></script>
-  <script src="app.js?v=20261103-usability-3" defer></script>
-  <script src="motion.js?v=20261103-usability-3" defer></script>
+  <script src="app.js?v=20261103-paced-4" defer></script>
+  <script src="motion.js?v=20261103-paced-4" defer></script>
 </head>
 <body>
   <svg class="cinema-defs" aria-hidden="true"><defs>
@@ -80,6 +80,11 @@
         <div class="cinema-foot" aria-hidden="true"><div class="cinema-chapters"><span data-chapter data-i18n="cinemaForm"></span><span data-chapter data-i18n="cinemaDetail"></span><span data-chapter data-i18n="cinemaLife"></span></div><div class="cinema-track"><span></span></div><span class="cinema-count" dir="ltr">01 — 03</span></div>
       </div>
     </section>
+    <section class="collection section-pad" id="collection" aria-labelledby="collection-title">
+      <div class="section-head reveal"><div><p class="eyebrow" data-i18n="sevenEssentials">سبعة أساسيات. عالم واحد.</p><h2 id="collection-title" data-i18n="collectionTitle">انسجام في كل ركن.</h2></div><p data-i18n="collectionDesc">اختر ما يشبهك.<br>دع البساطة تتولى الباقي.</p></div>
+      <div class="collection-toolbar"><div id="filters" class="filters" role="group" aria-label="Product categories"></div><span class="product-count" id="product-count" aria-live="polite"></span></div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
     <section class="product-film cinema-film film-brew" id="spotlight" data-film="brew" aria-labelledby="spot-title">
       <div class="cinema-stage">
         <div class="cinema-room" aria-hidden="true"><img src="assets/brew.jpg" alt="" loading="eager" decoding="async" width="768" height="1376"></div>
@@ -98,11 +103,6 @@
         <div class="cinema-actions"><div class="cinema-buy"><span class="film-price" data-price="brew"></span><button class="button dark" data-detail="brew"><span data-i18n="discoverBrew"></span><span>↗</span></button></div><a class="cinema-all" href="#collection" data-i18n="collection">المجموعة</a></div>
         <div class="cinema-foot" aria-hidden="true"><div class="cinema-chapters"><span data-chapter data-i18n="cinemaForm"></span><span data-chapter data-i18n="cinemaDetail"></span><span data-chapter data-i18n="cinemaLife"></span></div><div class="cinema-track"><span></span></div><span class="cinema-count" dir="ltr">01 — 03</span></div>
       </div>
-    </section>
-    <section class="collection section-pad" id="collection" aria-labelledby="collection-title">
-      <div class="section-head reveal"><div><p class="eyebrow" data-i18n="sevenEssentials">سبعة أساسيات. عالم واحد.</p><h2 id="collection-title" data-i18n="collectionTitle">انسجام في كل ركن.</h2></div><p data-i18n="collectionDesc">اختر ما يشبهك.<br>دع البساطة تتولى الباقي.</p></div>
-      <div class="collection-toolbar"><div id="filters" class="filters" role="group" aria-label="Product categories"></div><span class="product-count" id="product-count" aria-live="polite"></span></div>
-      <div class="product-grid" id="product-grid"></div>
     </section>
     <section class="philosophy" id="philosophy"><div class="philosophy-art"><img src="assets/air.jpg" alt="Minimal ivory MIRA AIR in a sunlit living room" loading="lazy" width="768" height="1376"></div><div class="philosophy-copy reveal"><p class="eyebrow" data-i18n="philosophyEye">فلسفة MIRA</p><h2 data-i18n="philosophyTitle">الجمال في<br>ما نختصره.</h2><p data-i18n="philosophyDesc">نمنح كل خط سببًا، وكل تفصيلة مساحة. مجموعة تنتمي إلى منزلك، وتترك مكانًا لحياتك.</p><a class="underlined" href="#collection"><span data-i18n="findMira">اعثر على MIRA الخاص بك</span><span>↗</span></a></div></section>
     <section class="closing section-pad reveal"><p class="eyebrow" data-i18n="closingEye">منزلك. بطريقتك.</p><h2 data-i18n="closingTitle">حياة أجمل.<br>تبدأ بتفصيلة.</h2><a class="button dark" href="#collection"><span data-i18n="explore">اكتشف المجموعة</span><span>↗</span></a></section>

@@ -19,7 +19,7 @@
    if(small){
     // No mobile pinning, staged text, hidden buttons or long scroll sequences.
     films.forEach(section=>{
-     gsap.fromTo(section.querySelector('.cinema-object'),{y:12,scale:.98},{y:-8,scale:1.025,ease:'none',scrollTrigger:{id:`mira-mobile-${section.dataset.film}`,trigger:section,start:'top 85%',end:'bottom 15%',scrub:.25}});
+     gsap.fromTo(section.querySelector('.cinema-object'),{y:12,scale:.98},{y:-8,scale:1.025,ease:'none',scrollTrigger:{id:`mira-mobile-${section.dataset.film}`,trigger:section,start:'top 85%',end:'bottom 15%',scrub:.5}});
     });
     return()=>root.classList.remove('gsap-ready');
    }
@@ -32,7 +32,7 @@
     gsap.set([copy,macro,room,endcard],{autoAlpha:0});
     gsap.set(room,{clipPath:brew?'inset(0% 50% 0% 50%)':'circle(0% at 50% 50%)',scale:1.05});
     const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{
-     id:`mira-story-${section.dataset.film}`,trigger:section,start:'top top',end:'bottom bottom',scrub:.35,invalidateOnRefresh:true,
+     id:`mira-story-${section.dataset.film}`,trigger:section,start:'top top',end:'bottom bottom',scrub:.65,invalidateOnRefresh:true,
      onUpdate:self=>section.classList.toggle('cinema-in-room',self.progress>.8),
      onToggle:self=>{object.style.willChange=self.isActive?'transform':'';}
     }});

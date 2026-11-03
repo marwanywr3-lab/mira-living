@@ -197,7 +197,7 @@ html[data-theme=dark] .cinema-stage::after,.cinema-in-room .cinema-stage::after{
 .cinema-ready{scroll-behavior:auto}.cinema-object{filter:none}
 .cinema-lead{inset-inline-start:auto;inset-inline-end:7%;width:29%}@media(max-width:900px){.cinema-lead{inset-inline-start:auto;inset-inline-end:6%;top:17%;width:74%}}
 /* Shopping first: short desktop stories, normal mobile flow, permanent actions. */
-.cinema-ready .cinema-film,.cinema-ready .film-brew{height:180svh;min-height:1100px}
+.cinema-ready .cinema-film,.cinema-ready .film-brew{height:260svh;min-height:1100px}
 .cinema-object,.film-brew .cinema-object{height:64%;inset:18% 0 18%}
 .cinema-slices,.cinema-ready .cinema-slices,.cinema-foot{display:none!important}
 .cinema-intact{visibility:visible;opacity:1}
