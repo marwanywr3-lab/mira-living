@@ -52,10 +52,12 @@
      .to(word,{opacity:0,duration:12},40)
      .to([copy,macro],{autoAlpha:0,duration:10},62)
      .to(object,{x:0,y:0,scale:.94,rotation:0,duration:20,ease:'power2.inOut'},64)
-     .to(room,{autoAlpha:1,clipPath:brew?'inset(0% 0% 0% 0%)':'circle(85% at 50% 50%)',scale:1,duration:22,ease:'power2.inOut'},72)
-     .to([halo,orbit],{autoAlpha:0,duration:10},78)
-     .to(object,{autoAlpha:0,duration:8},86)
-     .fromTo(endcard,{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:15,ease:'power2.out'},85);
+     // Extend only the final handoff. The 150-unit timeline and 340svh stage
+     // preserve the preceding scroll pace; this reveal gets 3× its old travel.
+     .to(room,{autoAlpha:1,clipPath:brew?'inset(0% 0% 0% 0%)':'circle(85% at 50% 50%)',scale:1,duration:66,ease:'none'},72)
+     .to([halo,orbit],{autoAlpha:0,duration:30},90)
+     .to(object,{autoAlpha:0,duration:24,ease:'sine.inOut'},114)
+     .fromTo(endcard,{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:18,ease:'power2.out'},132);
    });
    return()=>{
     root.classList.remove('gsap-ready','cinema-ready');
