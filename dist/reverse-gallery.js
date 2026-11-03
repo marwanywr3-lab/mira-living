@@ -62,6 +62,12 @@
   if(!eligible()||current.length!==7)return;
   if(!gsap||!ScrollTrigger)return;
   cards=current;
+  // Reversed transforms can confuse lazy-load distance estimates. Prepare the
+  // seven small catalog photos ahead of their movement; mobile stays lazy.
+  cards.forEach(card=>{
+   const image=card.querySelector('img');
+   if(image){image.decoding='async';image.loading='eager';}
+  });
   // Each appliance appears once. The center has the extra seventh product.
   const groups=[[0,3],[1,4,6],[2,5]];
   columns=groups.map((indices,index)=>{

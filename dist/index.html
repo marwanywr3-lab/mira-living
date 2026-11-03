@@ -14,15 +14,15 @@
     // Apply the saved/system theme before the first paint. Storage is optional.
     try { const p=JSON.parse(localStorage.getItem('mira-preferences')||'{}'); document.documentElement.dataset.theme=['light','dark'].includes(p.theme)?p.theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); } catch { document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
   </script>
-  <link rel="stylesheet" href="style.css?v=20261103-smooth-8">
-  <link rel="stylesheet" href="reverse-gallery.css?v=20261103-smooth-8">
+  <link rel="stylesheet" href="style.css?v=20261103-smooth-9">
+  <link rel="stylesheet" href="reverse-gallery.css?v=20261103-smooth-9">
   <script src="catalog.js?v=20261102-prices-2" defer></script>
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="vendor/MotionPathPlugin.min.js" defer></script>
-  <script src="app.js?v=20261103-smooth-8" defer></script>
-  <script src="motion.js?v=20261103-smooth-8" defer></script>
-  <script src="reverse-gallery.js?v=20261103-smooth-8" defer></script>
+  <script src="app.js?v=20261103-smooth-9" defer></script>
+  <script src="motion.js?v=20261103-smooth-9" defer></script>
+  <script src="reverse-gallery.js?v=20261103-smooth-9" defer></script>
 </head>
 <body>
   <svg class="cinema-defs" aria-hidden="true"><defs>
