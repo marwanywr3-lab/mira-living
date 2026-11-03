@@ -37,9 +37,14 @@
   const nextSizes=`${window.innerHeight}:${heights.join(':')}`;
   if(nextSizes===sizes)return true;
   sizes=nextSizes;
+  const frame=window.innerHeight-140;
   columns.forEach((column,index)=>{
-   column.style.setProperty('--reverse-from',`${-heights[index]}px`);
-   column.style.setProperty('--reverse-to',`${height}px`);
+   // Extend the original visible path beyond both viewport edges. Extrapolating
+   // it keeps the first/last card fully reachable rather than clipping a row.
+   const speed=(height+heights[index]-2*frame)/(height-frame);
+   const origin=frame-heights[index];
+   column.style.setProperty('--reverse-from',`${origin+speed*(110-window.innerHeight)}px`);
+   column.style.setProperty('--reverse-to',`${origin+speed*(110+height)}px`);
   });
   if(animation)ScrollTrigger.refresh(true);
   return true;
